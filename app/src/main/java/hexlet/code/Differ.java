@@ -9,6 +9,14 @@ import java.util.concurrent.Callable;
         description = "Compares two configuration files and shows a difference.")
 public class Differ implements Callable<Integer> {
 
+    @CommandLine.Parameters(index = "0")
+    String filepath1;
+    @CommandLine.Parameters(index = "1")
+    String filepath2;
+
+    @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
+    String format = "stylish";
+
     @Override
     public Integer call() throws Exception {
         System.out.println("help");
