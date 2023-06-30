@@ -3,3 +3,8 @@ run-dist:
 
 build:
 	./gradlew clean installDist
+
+checkstyle:
+	./gradlew checkstyleMain
+
+.PHONY: build
