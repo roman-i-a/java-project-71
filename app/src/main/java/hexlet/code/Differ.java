@@ -20,9 +20,9 @@ public class Differ {
     private static final String PLUS = "+ ";
     private static final String MINUS = "- ";
 
-    private static final ObjectMapper mapper = new ObjectMapper();
 
     private static Map<String, Object> getData(String filepath) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
         Path path = Paths.get(filepath).toAbsolutePath().normalize();
 
         var json = Files.readString(path);
