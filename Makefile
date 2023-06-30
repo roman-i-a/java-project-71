@@ -7,4 +7,7 @@ build:
 checkstyle:
 	./gradlew checkstyleMain
 
+say-hello:
+	echo "Hello, World!"
+
 .PHONY: build
