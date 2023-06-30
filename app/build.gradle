@@ -23,7 +23,7 @@ test {
 }
 
 application {
-    mainClass = 'hexlet.code.Differ'
+    mainClass = 'hexlet.code.App'
 }
 
 compileJava {

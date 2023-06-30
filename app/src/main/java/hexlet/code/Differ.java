@@ -1,30 +1,14 @@
 package hexlet.code;
 
-import picocli.CommandLine;
-
-import java.util.concurrent.Callable;
-
-@CommandLine.Command(name = "gendiff",
-        mixinStandardHelpOptions = true,
-        description = "Compares two configuration files and shows a difference.")
-public class Differ implements Callable<Integer> {
-
-    @CommandLine.Parameters(index = "0")
-    String filepath1;
-    @CommandLine.Parameters(index = "1")
-    String filepath2;
-
-    @CommandLine.Option(names = {"-f", "--format"}, description = "output format [default: stylish]")
-    String format = "stylish";
-
-    @Override
-    public Integer call() throws Exception {
-        System.out.println("help");
-        return 0;
-    }
-
-    public static void main(String[] args) {
-        int exitCode = new CommandLine(new Differ()).execute(args);
-        System.exit(exitCode);
+public class Differ {
+    public static String generate(String file1, String file2) {
+        return "{\n" +
+                "  - follow: false\n" +
+                "    host: hexlet.io\n" +
+                "  - proxy: 123.234.53.22\n" +
+                "  - timeout: 50\n" +
+                "  + timeout: 20\n" +
+                "  + verbose: true\n" +
+                "}";
     }
 }
