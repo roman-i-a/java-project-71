@@ -1,6 +1,17 @@
 package hexlet.code;
 
-import java.util.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+
+
 
 public class Differ {
 
@@ -8,39 +19,23 @@ public class Differ {
     private static final String PLUS = "+ ";
     private static final String MINUS = "- ";
 
-    private static Map<String, String> getData(String filepath) {
-        Map<String, String> map = new HashMap<>();
-        // Получаем мапу значений json
-        if (filepath.equals("file1.json")) {
-            map.put("host", "hexlet.io");
-            map.put("timeout", "50");
-            map.put("proxy", "123.234.53.22");
-            map.put("follow", "false");
-        }
-        if (filepath.equals("file2.json")) {
-            map.put("timeout", "20");
-            map.put("verbose", "true");
-            map.put("host", "hexlet.io");
+    private static final ObjectMapper mapper = new ObjectMapper();
 
-        }
-        return map;
+    private static Map<String, Object> getData(String filepath) throws IOException {
+        var json = Files.readString(Paths.get(filepath));
+        return mapper.readValue(json, new TypeReference<>() {
+        });
     }
 
-    private static StringBuilder checkKeyAndAppendStringBuilder(String key, Map<String, String> file1,
-                                                                Map<String, String> file2, StringBuilder sb) {
-
-        return sb;
-    }
-
-    public static String generate(String format, String filepath1, String filepath2) {
-        Map<String, String> file1 = getData(filepath1);
-        Map<String, String> file2 = getData(filepath2);
+    public static String generate(String format, String filepath1, String filepath2) throws IOException {
+        Map<String, Object> file1 = getData(filepath1);
+        Map<String, Object> file2 = getData(filepath2);
 
         // Объединим все уникальные ключи в одно множество
         var keySet = new HashSet<>(file1.keySet());
         keySet.addAll(file2.keySet());
 
-        var keys = new ArrayList<String>(keySet);
+        var keys = new ArrayList<>(keySet);
         Collections.sort(keys);
 
         StringBuilder sb = new StringBuilder();
