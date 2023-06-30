@@ -2,7 +2,6 @@ package hexlet.code;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -13,15 +12,13 @@ import java.util.HashSet;
 import java.util.Map;
 
 
-
 public class Differ {
-
     private static final String TAB = "  ";
     private static final String PLUS = "+ ";
     private static final String MINUS = "- ";
 
 
-    private static Map<String, Object> getData(String filepath) throws IOException {
+    private static Map<String, Object> getData(final String filepath) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         Path path = Paths.get(filepath).toAbsolutePath().normalize();
 
@@ -30,7 +27,9 @@ public class Differ {
         });
     }
 
-    public static String generate(String format, String filepath1, String filepath2) throws IOException {
+    public static String generate(String format,
+                                  String filepath1,
+                                  String filepath2) throws IOException {
         Map<String, Object> file1 = getData(filepath1);
         Map<String, Object> file2 = getData(filepath2);
 
