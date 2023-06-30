@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +23,9 @@ public class Differ {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     private static Map<String, Object> getData(String filepath) throws IOException {
-        var json = Files.readString(Paths.get(filepath));
+        Path path = Paths.get(filepath).toAbsolutePath().normalize();
+
+        var json = Files.readString(path);
         return mapper.readValue(json, new TypeReference<>() {
         });
     }
