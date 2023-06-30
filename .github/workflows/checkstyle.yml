@@ -1,5 +1,5 @@
 # file: .github/workflows/hello-world.yml
-name: hello-world
+name: checkstyle
 
 on: push
 jobs:
