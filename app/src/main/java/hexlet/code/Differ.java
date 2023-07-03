@@ -27,8 +27,7 @@ public class Differ {
         });
     }
 
-    public static String generate(String format,
-                                  String filepath1,
+    public static String generate(String format, String filepath1,
                                   String filepath2) throws IOException {
         Map<String, Object> file1 = getData(filepath1);
         Map<String, Object> file2 = getData(filepath2);
