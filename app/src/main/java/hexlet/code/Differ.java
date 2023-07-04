@@ -47,7 +47,6 @@ public class Differ {
                 continue;
             }
             // file1 содержит ключ
-
             // file2 не содержит ключ
             if (!file2.containsKey(key)) {
                 sb.append(TAB).append(PLUS).append(key).append(": ").append(file1.get(key)).append("\n");
