@@ -1,11 +1,7 @@
 package hexlet.code;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,14 +12,6 @@ import java.util.TreeSet;
 public class Differ {
     public static final String STYLISH = "stylish";
 
-    private static Map<String, Object> getData(final String filepath) throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        Path path = Paths.get(filepath).toAbsolutePath().normalize();
-
-        var json = Files.readString(path);
-        return mapper.readValue(json, new TypeReference<>() {
-        });
-    }
 
     public static Map<String, KeyStatus> genDiff(Map<String, Object> file1, Map<String, Object> file2) {
         Map<String, KeyStatus> result = new HashMap<>();
@@ -45,8 +33,8 @@ public class Differ {
 
     public static String generate(String format, String filepath1,
                                   String filepath2) throws IOException {
-        Map<String, Object> file1 = getData(filepath1);
-        Map<String, Object> file2 = getData(filepath2);
+        Map<String, Object> file1 = Parser.parse(filepath1);
+        Map<String, Object> file2 = Parser.parse(filepath2);
 
         var diff = genDiff(file1, file2);
         return formatDiffResult(format, diff, file1, file2);
@@ -56,6 +44,7 @@ public class Differ {
                                            Map<String, KeyStatus> diff,
                                            Map<String, Object> file1,
                                            Map<String, Object> file2) {
+        // TODO(Implement Formatter)
         switch (format) {
             case STYLISH -> {
                 return formatStylish(diff, file1, file2);
