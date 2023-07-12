@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Java CI
 
 on:
   push:
@@ -7,6 +7,16 @@ on:
     branches: [ "main" ]
 
 jobs:
+  checkstyle:
+    # операционная система для работы воркфлоу
+    runs-on: ubuntu-latest
+    steps: # список шагов, которые надо выполнить
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v1.4.4
+        with:
+          java-version: 17
+      - run: make checkstyle
+  
   build:
     runs-on: ubuntu-latest
 
@@ -20,10 +30,10 @@ jobs:
     - run: make checkstyle
     
     - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
+      uses: paambaati/codeclimate-action@v2.7.1
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CODECLIMAT_TEST_COVERAGE}}
         JACOCO_SOURCE_PATH: /app/src/main/java
       with:
         coverageCommand: make report
-        coverageLocations: ${{github.workspace}}app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+        coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
