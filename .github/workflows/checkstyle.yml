@@ -6,7 +6,7 @@ name: checkstyle
 
 on: push
 jobs:
-  say-hello:
+  checkstyle:
     # операционная система для работы воркфлоу
     runs-on: ubuntu-latest
     steps: # список шагов, которые надо выполнить
