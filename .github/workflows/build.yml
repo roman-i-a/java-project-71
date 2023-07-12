@@ -1,4 +1,4 @@
-name: Makefile CI
+name: Java CI
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
     - run: make checkstyle
     
     - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v3.0.0
+      uses: paambaati/codeclimate-action@v2.7.1
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CODECLIMAT_TEST_COVERAGE}}
         JACOCO_SOURCE_PATH: /app/src/main/java
