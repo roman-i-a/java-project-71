@@ -30,7 +30,7 @@ jobs:
     - run: make checkstyle
     
     - name: Publish code coverage
-      uses: paambaati/codeclimate-action@v2.7.1
+      uses: paambaati/codeclimate-action@v5.0.0
       env:
         CC_TEST_REPORTER_ID: ${{secrets.CODECLIMAT_TEST_COVERAGE}}
         JACOCO_SOURCE_PATH: /app/src/main/java
