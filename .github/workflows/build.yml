@@ -35,5 +35,8 @@ jobs:
         CC_TEST_REPORTER_ID: ${{secrets.CODECLIMAT_TEST_COVERAGE}}
         JACOCO_SOURCE_PATH: /app/src/main/java
       with:
-        coverageCommand: make report
+        coverageCommand:
+          make report
+          ./cc-test-reporter format-coverage target/site/jacoco/jacoco.xml --input-type jacoco
+          ./cc-test-reporter upload-coverage
         coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
