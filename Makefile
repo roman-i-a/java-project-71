@@ -1,8 +1,14 @@
 run-dist:
 	./app/build/install/app/bin/app
 
-build:
+test:
+	./gradlew test
+
+build: test checkstyle
 	./gradlew clean installDist
+
+report:
+	./gradlew jacocoTestReport
 
 checkstyle:
 	./gradlew checkstyleMain
@@ -10,4 +16,4 @@ checkstyle:
 say-hello:
 	echo "Hello, World!"
 
-.PHONY: build
+.PHONY: build, test
