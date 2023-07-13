@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
+import static hexlet.code.Formatter.STYLISH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
@@ -45,13 +46,13 @@ public class DifferTest {
 
     @Test
     public void DifferGenerateFile1File2JsonTest() throws IOException {
-        String generated = Differ.generate("stylish", file1, file2);
+        String generated = Differ.generate(STYLISH, file1, file2);
         assertEquals(DIFF_FILE1_FILE2, generated);
     }
 
     @Test
     public void DifferGenerateFile1File2YamlTest() throws IOException {
-        String generated = Differ.generate("stylish", file1Yaml, file2Yaml);
+        String generated = Differ.generate(STYLISH, file1Yaml, file2Yaml);
         assertEquals(DIFF_FILE1_FILE2, generated);
     }
 }
