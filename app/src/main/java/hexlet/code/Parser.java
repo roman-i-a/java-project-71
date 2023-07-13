@@ -35,6 +35,6 @@ public class Parser {
     public static String getExtension(Path path) {
         var filename = path.getFileName().toString();
         var dot = filename.lastIndexOf(".");
-        return filename.substring(dot+1);
+        return filename.substring(dot + 1);
     }
 }
