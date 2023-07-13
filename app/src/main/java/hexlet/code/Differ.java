@@ -3,32 +3,21 @@ package hexlet.code;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
 
 
 public class Differ {
-    public static final String STYLISH = "stylish";
 
-
-    public static Map<String, KeyStatus> genDiff(Map<String, Object> file1, Map<String, Object> file2) {
-        Map<String, KeyStatus> result = new HashMap<>();
+    private static List<Diff> genDiffList(Map<String, Object> file1, Map<String, Object> file2) {
+        List<Diff> diffs = new ArrayList<>();
         var keySet = new TreeSet<>(file1.keySet());
         keySet.addAll(file2.keySet());
         for (String key : keySet) {
-            if (!file1.containsKey(key)) {
-                result.put(key, KeyStatus.ADDED);
-            } else if (!file2.containsKey(key)) {
-                result.put(key, KeyStatus.DELETED);
-            } else if (file1.get(key).equals(file2.get(key))) {
-                result.put(key, KeyStatus.UNCHANGED);
-            } else {
-                result.put(key, KeyStatus.CHANGED);
-            }
+            diffs.add(new Diff(key, file1.get(key), file2.get(key)));
         }
-        return result;
+        return diffs.stream().sorted().toList();
     }
 
     public static String generate(String format, String filepath1,
@@ -36,48 +25,7 @@ public class Differ {
         Map<String, Object> file1 = Parser.parse(filepath1);
         Map<String, Object> file2 = Parser.parse(filepath2);
 
-        var diff = genDiff(file1, file2);
-        return formatDiffResult(format, diff, file1, file2);
-    }
-
-    private static String formatDiffResult(String format,
-                                           Map<String, KeyStatus> diff,
-                                           Map<String, Object> file1,
-                                           Map<String, Object> file2) {
-        // TODO(Implement Formatter)
-        switch (format) {
-            case STYLISH -> {
-                return formatStylish(diff, file1, file2);
-            }
-            default -> {
-                return "";
-            }
-        }
-    }
-
-    private static String formatStylish(
-            Map<String, KeyStatus> diff,
-            Map<String, Object> file1,
-            Map<String, Object> file2) {
-        var keySet = diff.keySet();
-        var keys = new ArrayList<>(keySet);
-        Collections.sort(keys);
-
-        StringBuilder sb = new StringBuilder();
-        sb.append("{\n");
-        for (String key : keys) {
-            switch (diff.get(key)) {
-                case ADDED -> sb.append("  + ").append(key).append(": ").append(file2.get(key)).append("\n");
-                case DELETED -> sb.append("  - ").append(key).append(": ").append(file1.get(key)).append("\n");
-                case CHANGED -> {
-                    sb.append("  ").append("- ").append(key).append(": ").append(file1.get(key)).append("\n");
-                    sb.append("  ").append("+ ").append(key).append(": ").append(file2.get(key)).append("\n");
-                }
-                case UNCHANGED -> sb.append("    ").append(key).append(": ").append(file2.get(key)).append("\n");
-                default -> { }
-            }
-        }
-        sb.append("}\n");
-        return sb.toString();
+        var diffs = genDiffList(file1, file2);
+        return Formatter.getFormatter(format).format(diffs);
     }
 }
