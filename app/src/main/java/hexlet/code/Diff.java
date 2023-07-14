@@ -1,11 +1,9 @@
 package hexlet.code;
 
 public final class Diff implements Comparable<Diff> {
-    // Имя свойста
+
     private final String property;
-    // Значение свойства в первом файле. Если null, то значение было добавлено
     private final Object first;
-    // Значение свойства во втором файле
     private final Object second;
     private final boolean hasFirst;
     private final boolean hasSecond;
@@ -35,7 +33,7 @@ public final class Diff implements Comparable<Diff> {
     }
 
     @Override
-    public int compareTo(Diff diff) {
+    public int compareTo(final Diff diff) {
         return this.property.compareTo((diff).getProperty());
     }
 

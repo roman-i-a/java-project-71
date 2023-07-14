@@ -1,19 +1,33 @@
+.DEFAULT_GOAL := build-run
+
+clean:
+	make -C app clean
+
+build:
+	make -C app build
+
+install:
+	make -C app install
+
 run-dist:
-	./app/build/install/app/bin/app
+	make -C run-dist
+
+run:
+	make -C app run
 
 test:
-	./gradlew test
-
-build: test checkstyle
-	./gradlew clean installDist
+	make -C app test
 
 report:
-	./gradlew jacocoTestReport --stacktrace
+	make -C app report
 
-checkstyle:
-	./gradlew checkstyleMain
+lint:
+	make -C app lint
 
-say-hello:
-	echo "Hello, World!"
+update-deps:
+	make -C app update-deps
 
-.PHONY: build, test
+
+build-run: build run
+
+.PHONY: build, run-dist
