@@ -15,14 +15,14 @@ public class StylishFormatter implements Formatter {
         sb.append("{\n");
         for (Diff diff : diffs) {
             switch (diff.getKeyStatus()) {
-                case ADDED -> sb.append(String.format(propertyTemplate, "+ ", diff.getProperty(), diff.getAfterValue()));
-                case DELETED -> sb.append(String.format(propertyTemplate, "- ", diff.getProperty(), diff.getBeforeValue()));
+                case ADDED -> sb.append(String.format(propertyTemplate, "+ ", diff.getProperty(), diff.getSecond()));
+                case DELETED -> sb.append(String.format(propertyTemplate, "- ", diff.getProperty(), diff.getFirst()));
                 case CHANGED -> {
-                    sb.append(String.format(propertyTemplate, "- ", diff.getProperty(), diff.getBeforeValue()));
-                    sb.append(String.format(propertyTemplate, "+ ", diff.getProperty(), diff.getAfterValue()));
+                    sb.append(String.format(propertyTemplate, "- ", diff.getProperty(), diff.getFirst()));
+                    sb.append(String.format(propertyTemplate, "+ ", diff.getProperty(), diff.getSecond()));
                 }
                 // UNCHANGED
-                default -> sb.append(String.format(propertyTemplate, "  ", diff.getProperty(), diff.getAfterValue()));
+                default -> sb.append(String.format(propertyTemplate, "  ", diff.getProperty(), diff.getSecond()));
             }
         }
         sb.append("}\n");
