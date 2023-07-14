@@ -1,19 +1,27 @@
 run-dist:
-	./app/build/install/app/bin/app
+	./build/install/app/bin/app build/resources/test/fixtures/file1.json build/resources/test/fixtures/file2.json
+
+clean:
+	./gradlew clean
+
+build:
+	./gradlew clean build
+
+run:
+	./gradlew run
+
+lint:
+	./gradlew checkstyleMain checkstyleTest
 
 test:
 	./gradlew test
 
-build: test checkstyle
-	./gradlew clean installDist
-
 report:
-	./gradlew jacocoTestReport --stacktrace
+	./gradlew jacocoTestReport
 
-checkstyle:
-	./gradlew checkstyleMain
+help:
+	./build/install/app/bin/app -h
 
-say-hello:
-	echo "Hello, World!"
+build-run: build run
 
-.PHONY: build, test
+.PHONY: build
