@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
     public static Map<String, Object> expectedFile1;
-    public static int TIMEOUT = 50;
+    public static final int TIMEOUT = 50;
 
     @BeforeAll
     public static void init() {
