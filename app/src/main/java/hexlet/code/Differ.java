@@ -34,6 +34,6 @@ public class Differ {
     }
 
     public static String generate(String filepath1, String filepath2) throws IOException {
-        return Differ.generate("stylish", filepath1, filepath2);
+        return Differ.generate(filepath1, filepath2, "stylish");
     }
 }
