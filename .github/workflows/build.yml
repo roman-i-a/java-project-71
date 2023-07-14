@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps: # список шагов, которые надо выполнить
       - uses: actions/checkout@v3
-      - uses: actions/setup-java@v1.4.4
+      - uses: actions/setup-java@v2
         with:
           java-version: 17
       - run: make checkstyle
@@ -28,7 +28,12 @@ jobs:
       # run – произвольная bash-команда
       # ls -la выведет содержимое текущего репозитория
     - run: make checkstyle
-    
+     
+    - name: Build with Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+          arguments: build
+          build-root-directory: app
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v5.0.0
       env:
