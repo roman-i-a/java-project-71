@@ -30,11 +30,11 @@ jobs:
       # ls -la выведет содержимое текущего репозитория
     #- run: make checkstyle
     
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@v2
-      with:
-          arguments: build
-          build-root-directory: ./
+#    - name: Build with Gradle
+#      uses: gradle/gradle-build-action@v2
+#      with:
+#          arguments: build
+#          build-root-directory: ./
     
     - name: Publish code coverage
       uses: paambaati/codeclimate-action@v5.0.0
@@ -42,5 +42,5 @@ jobs:
          CC_TEST_REPORTER_ID: ${{secrets.CODECLIMAT_TEST_COVERAGE}}
          JACOCO_SOURCE_PATH: ./app/src/main/java
       with:
-         coverageCommand: make report
+         coverageCommand: ./gradlew jacocoTestReport --stacktrace
          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
