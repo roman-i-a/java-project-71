@@ -34,7 +34,7 @@ test {
 }
 
 jacoco {
-    reportsDirectory = layout.buildDirectory.dir('/reports/jacoco')
+    reportsDirectory = layout.buildDirectory.dir('./reports/jacoco')
 }
 
 jacocoTestReport {
