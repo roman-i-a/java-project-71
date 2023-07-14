@@ -34,15 +34,13 @@ test {
 }
 
 jacoco {
-    reportsDirectory = layout.buildDirectory.dir('/reports/jacoco')
+    reportsDirectory = layout.buildDirectory.dir('./reports/jacoco')
 }
 
 jacocoTestReport {
     dependsOn test // tests are required to run before generating the report
     reports {
         xml.required = true
-        html.required = true
-        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
     }
 }
 
