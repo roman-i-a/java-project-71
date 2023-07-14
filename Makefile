@@ -8,7 +8,7 @@ build: test checkstyle
 	./gradlew clean installDist
 
 report:
-	./gradlew jacocoTestReport
+	./gradlew jacocoTestReport --stacktrace
 
 checkstyle:
 	./gradlew checkstyleMain
