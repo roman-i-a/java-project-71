@@ -34,7 +34,7 @@ public class PlainFormatter implements Formatter {
                 default -> { }
             }
         }
-        return sb.toString();
+        return sb.substring(0, sb.lastIndexOf("\n"));
     }
 
     private String checkValue(Object value) {
