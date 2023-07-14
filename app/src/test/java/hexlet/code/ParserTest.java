@@ -11,16 +11,26 @@ import java.util.TreeMap;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
-    public static Map<String, Object> expectedFile1;
+    private static Map<String, Object> expectedFile1;
+
+    public static Map<String, Object> getExpectedFile1() {
+        return expectedFile1;
+    }
+
+    public static void setExpectedFile1(Map<String, Object> expectedFile1) {
+        ParserTest.expectedFile1 = expectedFile1;
+    }
+
     public static final int TIMEOUT = 50;
 
     @BeforeAll
     public static void init() {
-        expectedFile1 = new TreeMap<>();
+        var map = new TreeMap<String, Object>();
         expectedFile1.put("host", "hexlet.io");
         expectedFile1.put("timeout", TIMEOUT);
         expectedFile1.put("proxy", "123.234.53.22");
         expectedFile1.put("follow", false);
+        setExpectedFile1(map);
     }
 
 
