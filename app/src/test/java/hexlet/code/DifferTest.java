@@ -44,7 +44,7 @@ public class DifferTest {
             }
             """;
 
-    private final static String PLAIN_FORMATTED = """
+    private final String PLAIN_FORMATTED = """
             Property 'chars2' was updated. From [complex value] to false
             Property 'checked' was updated. From false to true
             Property 'default' was updated. From null to [complex value]

@@ -31,7 +31,7 @@ public class PlainFormatter implements Formatter {
                             value1,
                             value2));
                 }
-                default -> {}
+                default -> { }
             }
         }
         return sb.toString();
