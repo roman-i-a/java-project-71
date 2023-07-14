@@ -41,7 +41,7 @@ public class JsonFormatter implements Formatter {
                     map.put("value1", diff.getFirst());
                     map.put("value2", diff.getSecond());
                 }
-                case UNCHANGED -> {
+                default -> {
                     map.put("type", "unchanged");
                     map.put("value", diff.getFirst());
                 }
