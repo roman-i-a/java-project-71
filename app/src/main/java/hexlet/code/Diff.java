@@ -4,22 +4,24 @@ public class Diff implements Comparable<Diff> {
     // Имя свойста
     private final String property;
     // Значение свойства в первом файле. Если null, то значение было добавлено
-    private final Object beforeValue;
+    private final Object first;
     // Значение свойства во втором файле
-    private final Object afterValue;
+    private final Object second;
 
-    public Diff(String property, Object beforeValue, Object afterValue) {
+    public Diff(String property, Object first, Object second) {
         this.property = property;
-        this.beforeValue = beforeValue;
-        this.afterValue = afterValue;
+        this.first = first;
+        this.second = second;
     }
 
     public KeyStatus getKeyStatus() {
-        if (beforeValue == null) {
+        if (first == null) {
             return KeyStatus.ADDED;
-        } else if (afterValue == null) {
+        }
+        if (second == null) {
             return KeyStatus.DELETED;
-        } else if (beforeValue.equals(afterValue)) {
+        }
+        if (first.equals(second)) {
             return KeyStatus.UNCHANGED;
         }
         return KeyStatus.CHANGED;
@@ -34,11 +36,11 @@ public class Diff implements Comparable<Diff> {
         return property;
     }
 
-    public Object getBeforeValue() {
-        return beforeValue;
+    public Object getFirst() {
+        return first;
     }
 
-    public Object getAfterValue() {
-        return afterValue;
+    public Object getSecond() {
+        return second;
     }
 }
