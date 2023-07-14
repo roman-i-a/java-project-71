@@ -5,7 +5,7 @@ import hexlet.code.Formatter;
 
 import java.util.List;
 
-public class StylishFormatter implements Formatter {
+public final class StylishFormatter implements Formatter {
 
     private final String propertyTemplate = "  %s%s: %s\n";
 

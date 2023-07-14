@@ -12,12 +12,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ParserTest {
     public static Map<String, Object> expectedFile1;
+    public static int TIMEOUT = 50;
 
     @BeforeAll
     public static void init() {
         expectedFile1 = new TreeMap<>();
         expectedFile1.put("host", "hexlet.io");
-        expectedFile1.put("timeout", 50);
+        expectedFile1.put("timeout", TIMEOUT);
         expectedFile1.put("proxy", "123.234.53.22");
         expectedFile1.put("follow", false);
     }

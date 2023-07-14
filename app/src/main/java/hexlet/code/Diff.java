@@ -33,7 +33,7 @@ public final class Diff implements Comparable<Diff> {
     }
 
     @Override
-    public int compareTo(Diff diff) {
+    public int compareTo(final Diff diff) {
         return this.property.compareTo((diff).getProperty());
     }
 

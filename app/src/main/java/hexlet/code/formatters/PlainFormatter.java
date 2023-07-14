@@ -7,7 +7,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class PlainFormatter implements Formatter {
+public final class PlainFormatter implements Formatter {
 
     @Override
     public String format(List<Diff> diffs) {

@@ -43,7 +43,7 @@ public class DifferTest {
               + setting3: none
             }""";
 
-    private final String plainFormatted = """
+    private static final String PLAIN_FORMATTED = """
             Property 'chars2' was updated. From [complex value] to false
             Property 'checked' was updated. From false to true
             Property 'default' was updated. From null to [complex value]
@@ -74,6 +74,6 @@ public class DifferTest {
     @Test
     public void differTestPlainFormat() throws IOException {
         String generated = Differ.generate(FILE1, FILE2, PLAIN);
-        assertEquals(plainFormatted, generated);
+        assertEquals(PLAIN_FORMATTED, generated);
     }
 }

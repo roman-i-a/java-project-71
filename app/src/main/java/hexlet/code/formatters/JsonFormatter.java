@@ -10,13 +10,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JsonFormatter implements Formatter {
+public final class JsonFormatter implements Formatter {
     @Override
     public String format(List<Diff> diffs) {
         ObjectMapper mapper = new ObjectMapper();
         try {
             var list = listDiffToListMap(diffs);
-            return mapper.writerWithDefaultPrettyPrinter().writeValueAsString(list);
+            return mapper
+                    .writerWithDefaultPrettyPrinter()
+                    .writeValueAsString(list);
         } catch (JsonProcessingException e) {
             throw new RuntimeException(e);
         }
