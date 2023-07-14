@@ -31,4 +31,8 @@ public class Differ {
         var diffs = genDiffList(file1, file2);
         return Formatter.getFormatter(format).format(diffs);
     }
+
+    public static String generate(String filepath1, String filepath2) throws IOException {
+        return Differ.generate("stylish", filepath1, filepath2);
+    }
 }
