@@ -25,7 +25,7 @@ public class StylishFormatter implements Formatter {
                 default -> sb.append(String.format(propertyTemplate, "  ", diff.getProperty(), diff.getSecond()));
             }
         }
-        sb.append("}");
+        sb.append("}\n");
         return sb.toString();
     }
 }
