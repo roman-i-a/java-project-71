@@ -26,10 +26,10 @@ public class ParserTest {
     @BeforeAll
     public static void init() {
         var map = new TreeMap<String, Object>();
-        expectedFile1.put("host", "hexlet.io");
-        expectedFile1.put("timeout", TIMEOUT);
-        expectedFile1.put("proxy", "123.234.53.22");
-        expectedFile1.put("follow", false);
+        map.put("host", "hexlet.io");
+        map.put("timeout", TIMEOUT);
+        map.put("proxy", "123.234.53.22");
+        map.put("follow", false);
         setExpectedFile1(map);
     }
 
