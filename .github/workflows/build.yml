@@ -24,8 +24,8 @@ jobs:
     - uses: actions/checkout@v3
     - uses: actions/setup-java@v2
       with:
-          java-version: 20
-          distribution: 'Temurin'
+          java-version: 17
+          distribution: 'temurin'
       # run – произвольная bash-команда
       # ls -la выведет содержимое текущего репозитория
     - run: make checkstyle
