@@ -23,8 +23,9 @@ public class Differ {
         return diffs.stream().sorted().toList();
     }
 
-    public static String generate(String format, String filepath1,
-                                  String filepath2) throws IOException {
+    public static String generate(String filepath1,
+                                  String filepath2,
+                                  String format) throws IOException {
         Map<String, Object> file1 = Parser.parse(filepath1);
         Map<String, Object> file2 = Parser.parse(filepath2);
 

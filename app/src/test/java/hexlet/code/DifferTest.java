@@ -62,19 +62,19 @@ public class DifferTest {
 
     @Test
     public void differGenerateFile1File2JsonTest() throws IOException {
-        String generated = Differ.generate(STYLISH, FILE1, FILE2);
+        String generated = Differ.generate(FILE1, FILE2, STYLISH);
         assertEquals(DIFF_FILE1_FILE2, generated);
     }
 
     @Test
     public void differGenerateFile1File2YamlTest() throws IOException {
-        String generated = Differ.generate(STYLISH, FILE1YML, FILE2YML);
+        String generated = Differ.generate(FILE1YML, FILE2YML);
         assertEquals(DIFF_FILE1_FILE2, generated);
     }
 
     @Test
     public void differTestPlainFormat() throws IOException {
-        String generated = Differ.generate(PLAIN, FILE1, FILE2);
+        String generated = Differ.generate(FILE1, FILE2, PLAIN);
         assertEquals(plainFormatted, generated);
     }
 }
