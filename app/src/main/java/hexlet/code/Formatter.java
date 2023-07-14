@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import hexlet.code.formatters.JsonFormatter;
 import hexlet.code.formatters.PlainFormatter;
 import hexlet.code.formatters.StylishFormatter;
 
@@ -13,8 +14,8 @@ public interface Formatter {
 
     static Formatter getFormatter(String format) {
         return switch (format) {
-            case STYLISH, JSON -> new StylishFormatter();
-            //case JSON -> new JsonFormatter();
+            case STYLISH -> new StylishFormatter();
+            case JSON -> new JsonFormatter();
             default -> new PlainFormatter();
         };
     }
