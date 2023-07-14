@@ -10,7 +10,8 @@ import java.util.TreeSet;
 
 public class Differ {
 
-    private static List<Diff> genDiffList(Map<String, Object> file1, Map<String, Object> file2) {
+    private static List<Diff> genDiffList(Map<String,
+            Object> file1, Map<String, Object> file2) {
         List<Diff> diffs = new ArrayList<>();
         var keySet = new TreeSet<>(file1.keySet());
         keySet.addAll(file2.keySet());

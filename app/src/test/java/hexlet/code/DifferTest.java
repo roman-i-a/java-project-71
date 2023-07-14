@@ -9,11 +9,11 @@ import static hexlet.code.Formatter.STYLISH;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DifferTest {
-    private static final String file1 = "./src/test/resources/fixtures/file1.json";
-    private static final String file2 = "./src/test/resources/fixtures/file2.json";
+    private static final String FILE1 = "./src/test/resources/fixtures/file1.json";
+    private static final String FILE2 = "./src/test/resources/fixtures/file2.json";
 
-    private static final String file1Yaml = "./src/test/resources/fixtures/file1.yml";
-    private static final String file2Yaml = "./src/test/resources/fixtures/file2.yml";
+    private static final String FILE1YML = "./src/test/resources/fixtures/file1.yml";
+    private static final String FILE2YML = "./src/test/resources/fixtures/file2.yml";
 
     private static final String DIFF_FILE1_FILE2 = """
             {
@@ -45,14 +45,14 @@ public class DifferTest {
 
 
     @Test
-    public void DifferGenerateFile1File2JsonTest() throws IOException {
-        String generated = Differ.generate(STYLISH, file1, file2);
+    public void differGenerateFile1File2JsonTest() throws IOException {
+        String generated = Differ.generate(STYLISH, FILE1, FILE2);
         assertEquals(DIFF_FILE1_FILE2, generated);
     }
 
     @Test
-    public void DifferGenerateFile1File2YamlTest() throws IOException {
-        String generated = Differ.generate(STYLISH, file1Yaml, file2Yaml);
+    public void differGenerateFile1File2YamlTest() throws IOException {
+        String generated = Differ.generate(STYLISH, FILE1YML, FILE2YML);
         assertEquals(DIFF_FILE1_FILE2, generated);
     }
 }
