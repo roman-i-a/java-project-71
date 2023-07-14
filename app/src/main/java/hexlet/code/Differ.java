@@ -15,7 +15,9 @@ public class Differ {
         var keySet = new TreeSet<>(file1.keySet());
         keySet.addAll(file2.keySet());
         for (String key : keySet) {
-            diffs.add(new Diff(key, file1.get(key), file2.get(key)));
+            boolean hasFirst = file1.containsKey(key);
+            boolean hasSecond = file2.containsKey(key);
+            diffs.add(new Diff(key, file1.get(key), file2.get(key), hasFirst, hasSecond));
         }
         return diffs.stream().sorted().toList();
     }

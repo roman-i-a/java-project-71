@@ -7,24 +7,31 @@ public class Diff implements Comparable<Diff> {
     private final Object first;
     // Значение свойства во втором файле
     private final Object second;
+    private final boolean hasFirst;
+    private final boolean hasSecond;
 
-    public Diff(String property, Object first, Object second) {
+    public Diff(String property,
+                Object first,
+                Object second,
+                boolean hasFirst,
+                boolean hasSecond) {
         this.property = property;
         this.first = first;
         this.second = second;
+        this.hasFirst = hasFirst;
+        this.hasSecond = hasSecond;
     }
 
     public KeyStatus getKeyStatus() {
+        KeyStatus status = KeyStatus.CHANGED;
         if (first == null) {
-            return KeyStatus.ADDED;
-        }
-        if (second == null) {
-            return KeyStatus.DELETED;
-        }
-        if (first.equals(second)) {
+            status = hasFirst ? KeyStatus.CHANGED : KeyStatus.ADDED;
+        } else if (second == null) {
+            status = hasSecond ? KeyStatus.CHANGED : KeyStatus.DELETED;
+        } else if (first.equals(second)) {
             return KeyStatus.UNCHANGED;
         }
-        return KeyStatus.CHANGED;
+        return status;
     }
 
     @Override
