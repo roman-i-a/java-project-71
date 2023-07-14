@@ -1,7 +1,7 @@
 package hexlet.code;
 
 public final class Diff implements Comparable<Diff> {
-    // Имя свойста
+    // Имя свойства
     private final String property;
     // Значение свойства в первом файле. Если null, то значение было добавлено
     private final Object first;

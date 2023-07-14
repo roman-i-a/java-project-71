@@ -1,30 +1,33 @@
-run-dist:
-	./build/install/app/bin/app build/resources/test/fixtures/file1.json build/resources/test/fixtures/file2.json
+.DEFAULT_GOAL := build-run
 
 clean:
-	./gradlew clean
-
-install:
-	./gradlew clean install
+	make -C app clean
 
 build:
-	./gradlew clean build
+	make -C app build
+
+install:
+	make -C app install
+
+run-dist:
+	make -C run-dist
 
 run:
-	./gradlew run
-
-lint:
-	./gradlew checkstyleMain checkstyleTest
+	make -C app run
 
 test:
-	./gradlew test
+	make -C app test
 
 report:
-	./gradlew jacocoTestReport
+	make -C app report
 
-help:
-	./build/install/app/bin/app -h
+lint:
+	make -C app lint
+
+update-deps:
+	make -C app update-deps
+
 
 build-run: build run
 
-.PHONY: build
+.PHONY: build, run-dist
