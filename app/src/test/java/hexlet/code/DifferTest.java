@@ -41,7 +41,8 @@ public class DifferTest {
               + setting2: 300
               - setting3: true
               + setting3: none
-            }""";
+            }
+            """;
 
     private final String plainFormatted = """
             Property 'chars2' was updated. From [complex value] to false
